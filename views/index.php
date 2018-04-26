@@ -34,26 +34,25 @@
     </div>
     <div class="content-display container-fluid">
         <div id="results" class="container-fluid">
-            <!-- Modal -->
-            <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Video</h4>
-                        </div>
-                        <div class="modal-body">
-                            <video src=""></video>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-
+            <?php echo $data;?>
+        </div>
+    </div>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <video id="video" src="" autoplay controls></video>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-            <?php echo $data;?>
+
         </div>
     </div>
 </div>
@@ -86,6 +85,14 @@
                 $('#results').html(data);
             }
         });
+    });
+    function loadVideo(videourl,name){
+        $('#video').attr('src',videourl);
+        $('.modal-title').html("Now Playing:"+name);
+        $('#myModal').modal();
+    }
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        $('video').trigger('pause');
     });
 </script>
 </body>

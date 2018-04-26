@@ -12,9 +12,9 @@ Router::get('', function () {
     $genres=DB::All('genre');
     foreach ($movies as $movie) {
         if ($m == 'No Movies') {
-            $m = "<div class='video' href='" . $movie['path'] . "' target='_blank'><p class='header'>" . $movie['title'] . "</p></div>";
+            $m = "<div class='video' onclick='loadVideo(\"".$movie['path']."\",\"" . $movie['title'] . "\")'><p class='header'>" . $movie['title'] . "</p></div>";
         } else {
-            $m .= "<div class='video' href='" . $movie['path'] . "' target='_blank'><p class='header'>" . $movie['title'] . "</p></div>";
+            $m .= "<div class='video' ' onclick='loadVideo(\"".$movie['path']."\",\"" . $movie['title'] . "\")'><p class='header'>" . $movie['title'] . "</p></div>";
         }
     }
     $data = '<h1>Videos</h1><div class="row">' . $m . '</div>';
@@ -26,9 +26,9 @@ Router::get('home', function () {
     $genres=DB::All('genre');
     foreach ($movies as $movie) {
         if ($m == 'No Movies') {
-            $m = "<div class='video' href='" . $movie['path'] . "' target='_blank'><p class='header'>" . $movie['title'] . "</p></div>";
+            $m = "<div class='video' onclick='loadVideo(\"".$movie['path']."\",\"" . $movie['title'] . "\")'><p class='header'>" . $movie['title'] . "</p></div>";
         } else {
-            $m .= "<div class='video' href='" . $movie['path'] . "' target='_blank'><p class='header'>" . $movie['title'] . "</p></div>";
+            $m .= "<div class='video' ' onclick='loadVideo(\"".$movie['path']."\",\"" . $movie['title'] . "\")'><p class='header'>" . $movie['title'] . "</p></div>";
         }
     }
     echo '<h1>Videos</h1><div class="row">' . $m . '</div>';
@@ -50,12 +50,12 @@ Router::post('search', function () {
     $m = 'No Movies';
     foreach ($data as $movie) {
         if ($m == 'No Movies') {
-            $m = "<div class='video' href='" . $movie->path . "' target='_blank'><p class='header'>" . $movie->title . "</p></div>";
+            $m = "<div class='video' onclick='loadVideo(\"".$movie->path."\",\"".$movie->title."\")'><p class='header'>" . $movie->title . "</p></div>";
         } else {
-            $m .= "<div class='video' href='" . $movie->path . "' target='_blank'><p class='header'>" . $movie->title . "</p></div>";
+            $m .= "<div class='video' onclick='loadVideo(\"".$movie->path."\",\"".$movie->title."\")'><p class='header'>" . $movie->title . "</p></div>";
         }
     }
-    echo '<h1>Videos</h1><p>' . $m . '</p>';
+    echo '<h1>Videos</h1><div class="row">' . $m . '</div>';
 });
 
 Router::post('genre', function () {
