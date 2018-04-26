@@ -9,26 +9,25 @@
 Router::get('', function () {
     $movies = DB::All('movies');
     $m = 'No Movies';
-    $genres=DB::All('genre');
+    $genres = DB::All('genre');
     foreach ($movies as $movie) {
         if ($m == 'No Movies') {
-            $m = "<div class='video' onclick='loadVideo(\"".$movie['path']."\",\"" . $movie['title'] . "\")'><p class='header'>" . $movie['title'] . "</p></div>";
+            $m = "<div class='video' onclick='loadVideo(\"" . $movie['path'] . "\",\"" . $movie['title'] . "\")'><p class='header'>" . $movie['title'] . "</p></div>";
         } else {
-            $m .= "<div class='video' ' onclick='loadVideo(\"".$movie['path']."\",\"" . $movie['title'] . "\")'><p class='header'>" . $movie['title'] . "</p></div>";
+            $m .= "<div class='video' ' onclick='loadVideo(\"" . $movie['path'] . "\",\"" . $movie['title'] . "\")'><p class='header'>" . $movie['title'] . "</p></div>";
         }
     }
     $data = '<h1>Videos</h1><div class="row">' . $m . '</div>';
-    View::load('index', ['data' => $data,'genres'=>$genres]);
+    View::load('index', ['data' => $data, 'genres' => $genres]);
 });
 Router::get('home', function () {
     $movies = DB::All('movies');
     $m = 'No Movies';
-    $genres=DB::All('genre');
     foreach ($movies as $movie) {
         if ($m == 'No Movies') {
-            $m = "<div class='video' onclick='loadVideo(\"".$movie['path']."\",\"" . $movie['title'] . "\")'><p class='header'>" . $movie['title'] . "</p></div>";
+            $m = "<div class='video' onclick='loadVideo(\"" . $movie['path'] . "\",\"" . $movie['title'] . "\")'><p class='header'>" . $movie['title'] . "</p></div>";
         } else {
-            $m .= "<div class='video' ' onclick='loadVideo(\"".$movie['path']."\",\"" . $movie['title'] . "\")'><p class='header'>" . $movie['title'] . "</p></div>";
+            $m .= "<div class='video' ' onclick='loadVideo(\"" . $movie['path'] . "\",\"" . $movie['title'] . "\")'><p class='header'>" . $movie['title'] . "</p></div>";
         }
     }
     echo '<h1>Videos</h1><div class="row">' . $m . '</div>';
@@ -50,9 +49,9 @@ Router::post('search', function () {
     $m = 'No Movies';
     foreach ($data as $movie) {
         if ($m == 'No Movies') {
-            $m = "<div class='video' onclick='loadVideo(\"".$movie->path."\",\"".$movie->title."\")'><p class='header'>" . $movie->title . "</p></div>";
+            $m = "<div class='video' onclick='loadVideo(\"" . $movie->path . "\",\"" . $movie->title . "\")'><p class='header'>" . $movie->title . "</p></div>";
         } else {
-            $m .= "<div class='video' onclick='loadVideo(\"".$movie->path."\",\"".$movie->title."\")'><p class='header'>" . $movie->title . "</p></div>";
+            $m .= "<div class='video' onclick='loadVideo(\"" . $movie->path . "\",\"" . $movie->title . "\")'><p class='header'>" . $movie->title . "</p></div>";
         }
     }
     echo '<h1>Videos</h1><div class="row">' . $m . '</div>';

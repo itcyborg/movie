@@ -11,9 +11,10 @@ class App
     public static $root;
     public static function run($root)
     {
+        //set the document root
         self::$root=$root;
-        Router::load('routes/routes.php')
-            ->direct(Request::uri(),Request::method());
+        Router::load('routes/routes.php')//load the routes file
+            ->direct(Request::uri(),Request::method());//get the request information
     }
 
     /**
